@@ -20,6 +20,7 @@ jar {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+"
+    compile "org.apache.commons:commons-text:1.6"
 }
 
 compileKotlin {
