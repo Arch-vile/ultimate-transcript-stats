@@ -16,7 +16,7 @@ class Interpreted extends Component {
     const interpreted = (transcript + " mikko").split(" ");
 
     const wordLabels = interpreted
-    .map(word => <WordLabel text={word}/>)
+    .map((word,index) => <WordLabel text={word} key={index}/>)
 
     return (
         <div className="borders">

@@ -17,9 +17,7 @@ class PlayerList extends Component {
     } = this.state
 
     const listOfPlayers =
-        players.length == 0 ?
-            [<li>Valitse pelaajat sanellusta tekstistä</li>] :
-            players.map(name => <li>{name}</li>)
+            players.map(name => <li key={name}>{name}</li>)
 
     return (
         <div className="borders">
