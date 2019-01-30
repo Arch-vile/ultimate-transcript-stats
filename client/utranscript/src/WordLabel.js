@@ -1,11 +1,16 @@
 import React, {Component} from 'react'
 import Popup from 'reactjs-popup'
+import { connect } from 'react-redux';
+
+const mapDispatchToProps = dispatch => ({
+  addPlayer: () => dispatch({type: 'ADD_PLAYER', payload: {name: 'jaakkko'}})
+})
 
 class WordPopup extends Component {
 
   playerSelected = () => {
     this.props.close()
-    this.props.classifyCB(this.props.text,"PLAYER")
+    this.props.addPlayer()
   }
 
   render() {
@@ -23,6 +28,10 @@ class WordPopup extends Component {
   }
 }
 
+const WWW = connect(state => ({}),mapDispatchToProps)(WordPopup)
+
+
+
 class WordLabel extends Component {
 
   constructor(props) {
@@ -30,7 +39,7 @@ class WordLabel extends Component {
     this.state = {}
   }
 
-  classifyWord = (word,classOf) => {
+  classifyWord = (word, classOf) => {
     console.log(`Classified word ${word} as ${classOf}`)
   }
 
@@ -43,10 +52,9 @@ class WordLabel extends Component {
         <Popup className="popup" trigger={<span>{text}</span>}
                position="top center">
           {close => (
-              <WordPopup
+              <WWW
                   close={close}
                   text={text}
-                  classifyCB={this.classifyWord}
               />
           )
           }

@@ -1,19 +1,16 @@
-import {combineReducers} from 'redux';
 
-const playerReducer = (state = { players: ["mikko"] }, action) => {
+export default (state = { players: ["mikko2"] }, action) => {
   switch (action.type) {
     case 'ADD_PLAYER':
-      const players = state.players
-      players.add(action.payload.name)
+      const playerList = state.players
+      playerList.push(action.payload.name)
+      // const playerList = ["foo"]
       return {
-        players: players
+        players: [...playerList]
       }
     default:
       return state
   }
 }
 
-export default combineReducers({
-  playerReducer
-});
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
-  players: state.playerReducer.players,
+  players: state.players,
 })
 
 class PlayerList extends Component {
@@ -14,11 +14,6 @@ class PlayerList extends Component {
     return (
         <div className="borders">
           <span>Pelaajat</span>
-          <pre>
-          {
-            JSON.stringify(this.props)
-          }
-        </pre>
           <ul>
             {listOfPlayers}
           </ul>

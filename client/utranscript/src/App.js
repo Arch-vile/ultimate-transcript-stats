@@ -6,10 +6,6 @@ import SpeechRecognition from "./SpeechRecognition";
 import PlayerList from "./PlayerList";
 
 class App extends Component {
-
-
-
-
   render() {
     return (
         <div className="App">
