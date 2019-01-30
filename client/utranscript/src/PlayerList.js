@@ -1,27 +1,24 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux';
 
-const propTypes = {}
+const mapStateToProps = state => ({
+  players: state.playerReducer.players,
+})
 
 class PlayerList extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      players: []
-    }
-  }
-
   render() {
-    const {
-      players
-    } = this.state
-
     const listOfPlayers =
-            players.map(name => <li key={name}>{name}</li>)
+            this.props.players.map(name => <li key={name}>{name}</li>)
 
     return (
         <div className="borders">
           <span>Pelaajat</span>
+          <pre>
+          {
+            JSON.stringify(this.props)
+          }
+        </pre>
           <ul>
             {listOfPlayers}
           </ul>
@@ -30,6 +27,5 @@ class PlayerList extends Component {
   }
 }
 
-PlayerList.propTypes = propTypes
+export default connect(mapStateToProps)(PlayerList);
 
-export default PlayerList
