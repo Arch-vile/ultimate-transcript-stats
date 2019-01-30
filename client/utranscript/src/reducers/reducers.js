@@ -2,11 +2,8 @@
 export default (state = { players: ["mikko2"] }, action) => {
   switch (action.type) {
     case 'ADD_PLAYER':
-      const playerList = state.players
-      playerList.push(action.payload.name)
-      // const playerList = ["foo"]
       return {
-        players: [...playerList]
+        players: Array.from(new Set([...state.players, action.payload.name]))
       }
     default:
       return state
