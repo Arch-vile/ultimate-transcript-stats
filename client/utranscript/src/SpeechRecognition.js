@@ -21,8 +21,6 @@ class Dictaphone extends Component {
     } = this.props
 
     recognition.lang = "fi-FI"
-    console.log(recognition)
-
     if (!browserSupportsSpeechRecognition) {
       return null
     }

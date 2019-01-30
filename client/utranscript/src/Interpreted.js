@@ -13,10 +13,10 @@ class Interpreted extends Component {
       transcript
     } = this.props
 
-    const interpreted = (transcript + " mikko").split(" ");
+    const interpreted = ("mikko " + transcript).split(" ");
 
     const wordLabels = interpreted
-    .map((word,index) => <WordLabel text={word} key={index}/>)
+    .map((word,index) => <span key={index}><WordLabel text={word}/>&nbsp;</span>)
 
     return (
         <div className="borders">
