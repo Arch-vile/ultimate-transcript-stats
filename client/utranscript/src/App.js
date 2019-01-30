@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import './SpeechRecognition'
 import SpeechRecognition from "./SpeechRecognition";
@@ -10,7 +9,7 @@ class App extends Component {
     return (
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo"/>
+            header
           </header>
           <div className="borders">
             <SpeechRecognition/>
