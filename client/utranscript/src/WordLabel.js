@@ -5,7 +5,7 @@ class WordPopup extends Component {
 
   playerSelected = () => {
     this.props.close()
-    this.props.playerCB(this.props.text)
+    this.props.classifyCB(this.props.text,"PLAYER")
   }
 
   render() {
@@ -30,8 +30,8 @@ class WordLabel extends Component {
     this.state = {}
   }
 
-  markPlayer(name) {
-    console.log("marked player " + name)
+  classifyWord = (word,classOf) => {
+    console.log(`Classified word ${word} as ${classOf}`)
   }
 
   render() {
@@ -46,7 +46,7 @@ class WordLabel extends Component {
               <WordPopup
                   close={close}
                   text={text}
-                  playerCB={(name) => this.markPlayer(name)}
+                  classifyCB={this.classifyWord}
               />
           )
           }
