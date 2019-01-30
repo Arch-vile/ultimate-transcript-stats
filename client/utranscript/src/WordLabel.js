@@ -1,16 +1,20 @@
 import React, {Component} from 'react'
 import Popup from 'reactjs-popup'
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 const mapDispatchToProps = dispatch => ({
-  addPlayer: () => dispatch({type: 'ADD_PLAYER', payload: {name: 'jaakkko'}})
+  addPlayer: (name) => dispatch(
+      {
+        type: 'ADD_PLAYER',
+        payload: {name}
+      })
 })
 
 class WordPopup extends Component {
 
   playerSelected = () => {
     this.props.close()
-    this.props.addPlayer()
+    this.props.addPlayer(this.props.text)
   }
 
   render() {
@@ -28,9 +32,7 @@ class WordPopup extends Component {
   }
 }
 
-const WWW = connect(state => ({}),mapDispatchToProps)(WordPopup)
-
-
+const WWW = connect(state => ({}), mapDispatchToProps)(WordPopup)
 
 class WordLabel extends Component {
 

@@ -1,9 +1,10 @@
 
-export default (state = { players: ["mikko2"] }, action) => {
+export default (state = { players: [] }, action) => {
   switch (action.type) {
     case 'ADD_PLAYER':
       return {
-        players: Array.from(new Set([...state.players, action.payload.name]))
+        players:
+            Array.from(new Set([...state.players, action.payload.name]))
       }
     default:
       return state

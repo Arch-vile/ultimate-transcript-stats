@@ -11,6 +11,9 @@ const propTypes = {
   recognition: PropTypes.object
 }
 
+
+// hyökkäys viivalla mikko-ville Jukka Kalle Pekka kiekon nosto Ville
+
 class Dictaphone extends Component {
   render() {
     const {
