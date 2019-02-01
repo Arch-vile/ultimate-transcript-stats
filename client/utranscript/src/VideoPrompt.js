@@ -41,10 +41,11 @@ class VideoPrompt extends Component {
 
     return (
         <div>
-        <div className="borders">
-          <span>Anna videon YouTube osoite tai id</span><br/>
-          <input onChange={this.onInput}/>
-        </div>
+          {this.props.appState === "PROMPT_VIDEO" &&
+          <div className="borders">
+            <span>Anna videon YouTube osoite tai id</span><br/>
+            <input onChange={this.onInput}/>
+          </div>}
         </div>
     )
   }

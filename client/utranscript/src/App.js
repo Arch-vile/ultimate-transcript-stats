@@ -4,6 +4,7 @@ import './SpeechRecognition'
 import SpeechRecognition from "./SpeechRecognition";
 import VideoPrompt from "./VideoPrompt";
 import VideoPlayer from "./VideoPlayer";
+import PlayerPrompt from "./PlayerPrompt";
 
 class App extends Component {
   render() {
@@ -12,11 +13,10 @@ class App extends Component {
           <header className="App-header">
             Ultimate ultimate transcript
           </header>
-          <div className="borders">
-            <SpeechRecognition/>
-          </div>
+          <SpeechRecognition/>
           <VideoPrompt/>
           <VideoPlayer/>
+          <PlayerPrompt/>
 
         </div>
     );
