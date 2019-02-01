@@ -1,18 +1,5 @@
 import React, {Component} from 'react'
 import SpeechRecognition from 'react-speech-recognition'
-import PropTypes from 'prop-types';
-import Interpreted from "./Interpreted";
-
-const propTypes = {
-  // Props injected by SpeechRecognition
-  transcript: PropTypes.string,
-  resetTranscript: PropTypes.func,
-  browserSupportsSpeechRecognition: PropTypes.bool,
-  recognition: PropTypes.object
-}
-
-
-// hyökkäys viivalla mikko-ville Jukka Kalle Pekka kiekon nosto Ville
 
 class Dictaphone extends Component {
   render() {
@@ -29,18 +16,9 @@ class Dictaphone extends Component {
     }
 
     return (
-        <div>
-          <div className="borders">
-            <button onClick={resetTranscript}>Reset</button>
-            <span>{transcript}</span>
-          </div>
-          <Interpreted transcript={transcript}/>
-        </div>
-
+        <div></div>
     )
   }
 }
-
-Dictaphone.propTypes = propTypes
 
 export default SpeechRecognition(Dictaphone)
