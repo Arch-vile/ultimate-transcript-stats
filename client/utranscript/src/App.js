@@ -5,6 +5,8 @@ import SpeechRecognition from "./SpeechRecognition";
 import VideoPrompt from "./VideoPrompt";
 import VideoPlayer from "./VideoPlayer";
 import PlayerPrompt from "./PlayerPrompt";
+import PlayerList from "./PlayerList";
+import Dictated from "./Dictated";
 
 class App extends Component {
   render() {
@@ -17,7 +19,8 @@ class App extends Component {
           <VideoPrompt/>
           <VideoPlayer/>
           <PlayerPrompt/>
-
+          <PlayerList/>
+          <Dictated/>
         </div>
     );
   }

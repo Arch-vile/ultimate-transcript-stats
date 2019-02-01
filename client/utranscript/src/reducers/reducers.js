@@ -2,7 +2,9 @@ export const appStates = ['PROMPT_VIDEO','PROMPT_PLAYERS']
 
 const initialState = {
   players: ["mikko"],
-  appState: "PROMPT_VIDEO",
+  // appState: "PROMPT_VIDEO",
+  appState: "PROMPT_PLAYERS",
+  transcripts: []
 }
 
 export default (state = initialState, action) => {
@@ -18,6 +20,13 @@ export default (state = initialState, action) => {
         ...state,
         appState: "PROMPT_PLAYERS",
         videoId: action.payload
+      }
+    case 'TRANSCRIPT':
+
+
+      return {
+        ...state,
+        transcripts: [...state.transcripts, action.payload]
       }
     default:
       return state

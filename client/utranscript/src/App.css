@@ -24,3 +24,10 @@
   color: black;
 }
 
+.unimportant {
+  border: 1px dotted gray;
+  margin: 10px;
+  padding: 10px;
+  color: gray;
+  font-size: 0.4em;
+}
