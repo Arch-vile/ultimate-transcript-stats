@@ -1,27 +1,46 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 
+class PlayerLabel extends Component {
+
+  render() {
+    const {
+      removePlayer, text
+    } = this.props;
+
+    return (<div>
+      <span>{text}</span>
+      <span onClick={() => removePlayer(text)}> [poista]</span>
+    </div>)
+  }
+}
+
 const mapStateToProps = state => ({
   players: state.players,
-  transcripts: state.transcripts
+})
+
+const mapDispatchToProps = dispatch => ({
+  removePlayer: (name) => dispatch(
+      {
+        type: 'REMOVE_PLAYER',
+        payload: {name}
+      })
 })
 
 class PlayerList extends Component {
 
+  removePlayer = (name) => {
+    this.props.removePlayer(name)
+  }
+
   render() {
-
-    const allWords =
-        this.props.transcripts
-        .flatMap(it => it.split(" "))
-        .flatMap(it => it.split("-"))
-        .map(it => it.toLowerCase())
-
-    const uniqueWords = new Set(allWords);
-
-    const playerWords = [...uniqueWords]
-    console.log(playerWords)
     const listOfPlayers =
-        playerWords.map(name => <li key={name}>{name}</li>);
+        this.props.players.map(name =>
+            <PlayerLabel
+                key={name}
+                text={name}
+                removePlayer={this.removePlayer}
+            />);
 
     return (
         <div className="borders">
@@ -34,5 +53,5 @@ class PlayerList extends Component {
   }
 }
 
-export default connect(mapStateToProps)(PlayerList);
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerList);
 

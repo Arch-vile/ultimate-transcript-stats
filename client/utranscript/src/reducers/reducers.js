@@ -1,4 +1,4 @@
-export const appStates = ['PROMPT_VIDEO','PROMPT_PLAYERS']
+export const appStates = ['PROMPT_VIDEO', 'PROMPT_PLAYERS']
 
 const initialState = {
   players: ["mikko"],
@@ -15,6 +15,11 @@ export default (state = initialState, action) => {
         players:
             Array.from(new Set([...state.players, action.payload.name]))
       }
+    case 'REMOVE_PLAYER':
+      return {
+        ...state,
+        players: [...state.players.filter(it => it != action.payload.name)]
+      }
     case 'VIDEO_INSERTED':
       return {
         ...state,
@@ -22,11 +27,27 @@ export default (state = initialState, action) => {
         videoId: action.payload
       }
     case 'TRANSCRIPT':
+      const newTranscript = action.payload
+      const updatedTranscripts = [...state.transcripts, newTranscript]
 
+      if (state.appState === 'PROMPT_PLAYERS') {
+        const currentPlayers = state.players;
+        const allWords =
+            newTranscript.split(" ")
+            .flatMap(it => it.split("-"))
+            .map(it => it.toLowerCase())
+
+        const newPlayers = new Set([...currentPlayers, ...allWords]);
+        return {
+          ...state,
+          transcripts: updatedTranscripts,
+          players: [...newPlayers]
+        }
+      }
 
       return {
         ...state,
-        transcripts: [...state.transcripts, action.payload]
+        transcripts: updatedTranscripts
       }
     default:
       return state
