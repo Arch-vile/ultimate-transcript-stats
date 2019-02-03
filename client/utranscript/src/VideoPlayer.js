@@ -14,7 +14,7 @@ class VideoPlayer extends Component {
           {
             this.props.videoId &&
             <div className="borders">
-              <iframe id="ytplayer" type="text/html" width="640" height="360"
+              <iframe title={"embeddedVideo"} id="ytplayer" type="text/html" width="640" height="360"
                       src={"https://www.youtube.com/embed/" + this.props.videoId + "?autoplay=true"}
                       frameBorder="0"></iframe>
             </div>}

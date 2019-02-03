@@ -18,7 +18,12 @@ export default (state = initialState, action) => {
     case 'REMOVE_PLAYER':
       return {
         ...state,
-        players: [...state.players.filter(it => it != action.payload.name)]
+        players: [...state.players.filter(it => it !== action.payload.name)]
+      }
+    case 'PLAYERS_DONE':
+      return {
+        ...state,
+        appState: 'PROMPT_POINT'
       }
     case 'VIDEO_INSERTED':
       return {

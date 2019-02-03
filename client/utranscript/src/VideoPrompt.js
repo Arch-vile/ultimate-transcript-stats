@@ -18,7 +18,7 @@ function isValidYoutube(videoIdOrUrl) {
 }
 
 function getVideoId(videoIdOrUrl) {
-  if (videoIdOrUrl.indexOf("http") != -1) {
+  if (videoIdOrUrl.indexOf("http") !== -1) {
     return /v=([^&]*)/.exec(videoIdOrUrl)[1]
   } else {
     return videoIdOrUrl;
@@ -40,12 +40,9 @@ class VideoPrompt extends Component {
   render() {
 
     return (
-        <div>
-          {this.props.appState === "PROMPT_VIDEO" &&
-          <div className="borders">
-            <span>Anna videon YouTube osoite tai id</span><br/>
-            <input onChange={this.onInput}/>
-          </div>}
+        <div className="borders">
+          <span>Anna videon YouTube osoite tai id</span><br/>
+          <input onChange={this.onInput}/>
         </div>
     )
   }
