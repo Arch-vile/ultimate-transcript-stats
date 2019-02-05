@@ -31,3 +31,28 @@
   color: gray;
   font-size: 0.4em;
 }
+
+.flexContainer {
+  display: flex;
+}
+
+.microphone {
+  width: 30px;
+  background-color: red;
+  animation: colorchange 1s infinite;
+  -webkit-animation: colorchange 1s infinite;
+}
+
+@keyframes colorchange
+{
+  0%   {background: #282c34;}
+  50% {background: red;}
+  100% {background: #282c34;}
+}
+
+@-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+{
+  0%   {background: #282c34;}
+  50% {background: red;}
+  100% {background: #282c34;}
+}

@@ -1,9 +1,10 @@
-export const appStates = ['PROMPT_VIDEO', 'PROMPT_PLAYERS']
+export const appStates = ['PROMPT_VIDEO', 'PROMPT_PLAYERS', 'PROMPT_POINT']
 
 const initialState = {
-  players: ["mikko"],
+  players: ["mikko", "ville"],
+  videoId: 'pOEbUUS4APk',
   // appState: "PROMPT_VIDEO",
-  appState: "PROMPT_PLAYERS",
+  appState: "PROMPT_POINT",
   transcripts: []
 }
 

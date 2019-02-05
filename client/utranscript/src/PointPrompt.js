@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
+import microphone from './microphone.svg'
 
 const mapStateToProps = state => ({state})
 
@@ -10,16 +11,19 @@ const mapDispatchToProps = dispatch => ({
       })
 })
 
-class PlayerPrompt extends Component {
+class PointPrompt extends Component {
+
   render() {
     return (
         <div className="borders">
-          <span>Sanele pelaajien nimet</span><br/>
-          <button type="button" onClick={this.props.playersDone}>Valmis</button>
+          <span>
+            Hyökkäys / Puolustus
+            <img src={microphone} className="microphone"/>
+          </span><br/>
         </div>
     )
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerPrompt);
+export default connect(mapStateToProps, mapDispatchToProps)(PointPrompt);
 

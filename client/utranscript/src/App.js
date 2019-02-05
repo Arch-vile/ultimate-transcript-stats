@@ -9,6 +9,7 @@ import PlayerList from "./PlayerList";
 import Dictated from "./Dictated";
 
 import {connect} from 'react-redux';
+import PointPrompt from "./PointPrompt";
 
 const mapStateToProps = state => ({
   appState: state.appState
@@ -41,6 +42,15 @@ class App extends Component {
           </div>
           }
 
+          {appState === 'PROMPT_POINT' &&
+          <div>
+            <VideoPlayer/>
+            <div className="flexContainer">
+              <PlayerList className="floatLeft"/>
+              <PointPrompt className="float"/>
+            </div>
+          </div>
+          }
 
           <Dictated/>
         </div>
