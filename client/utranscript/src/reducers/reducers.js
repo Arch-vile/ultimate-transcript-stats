@@ -3,18 +3,20 @@ export const appStates = ['PROMPT_VIDEO', 'PROMPT_PLAYERS', 'PROMPT_POINT']
 const initialState = {
   players: ["mikko", "ville"],
   videoId: 'pOEbUUS4APk',
-  // appState: "PROMPT_VIDEO",
-  appState: "PROMPT_POINT",
+   // appState: "PROMPT_VIDEO",
+  // appState: "PROMPT_POINT",
+  appState: 'PROMPT_PLAYERS',
   transcripts: []
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_PLAYER':
+    case 'ADD_PLAYERS':
+      const currentPlayers = state.players;
+      const players = new Set([...currentPlayers, ...action.payload]);
       return {
         ...state,
-        players:
-            Array.from(new Set([...state.players, action.payload.name]))
+        players: [...players]
       }
     case 'REMOVE_PLAYER':
       return {
@@ -32,28 +34,10 @@ export default (state = initialState, action) => {
         appState: "PROMPT_PLAYERS",
         videoId: action.payload
       }
-    case 'TRANSCRIPT':
-      const newTranscript = action.payload
-      const updatedTranscripts = [...state.transcripts, newTranscript]
-
-      if (state.appState === 'PROMPT_PLAYERS') {
-        const currentPlayers = state.players;
-        const allWords =
-            newTranscript.split(" ")
-            .flatMap(it => it.split("-"))
-            .map(it => it.toLowerCase())
-
-        const newPlayers = new Set([...currentPlayers, ...allWords]);
-        return {
-          ...state,
-          transcripts: updatedTranscripts,
-          players: [...newPlayers]
-        }
-      }
-
+    case 'SPEECH':
       return {
         ...state,
-        transcripts: updatedTranscripts
+        transcripts: [...state.transcripts, action.payload]
       }
     default:
       return state

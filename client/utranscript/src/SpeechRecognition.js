@@ -1,29 +1,22 @@
 import React, {Component} from 'react'
-import SpeechRecognition from 'react-speech-recognition'
 import {connect} from 'react-redux';
+import {speechHandler} from "./speechHandling/speechHandling";
+import SpeechRecognition from 'react-speech-recognition'
 
-const mapDispatchToProps = dispatch => ({
-  transcripted: (transcript) => dispatch(
-      {
-        type: 'TRANSCRIPT',
-        payload: transcript
-      })
-})
-
+const mapDispatchToProps = dispatch => ({dispatch})
 const mapStateToProps = state => (state)
 
 class Dictaphone extends Component {
 
-  dispatchTranscript = (event) => {
-    if (event.results[0] && event.results[0].isFinal) {
-      this.props.transcripted(event.results[0][0].transcript)
-    }
-  }
-
   constructor(props) {
     super(props);
     props.recognition.onresult = event => {
-      this.dispatchTranscript(event)
+      if (event.results[0] && event.results[0].isFinal) {
+        speechHandler(
+            this.props.dispatch,
+            this.props,
+            event.results[0][0].transcript)
+      }
     }
   }
 
@@ -45,5 +38,6 @@ class Dictaphone extends Component {
   }
 }
 
-const foo = connect(mapStateToProps,mapDispatchToProps)(Dictaphone)
+const
+    foo = connect(mapStateToProps, mapDispatchToProps)(Dictaphone)
 export default SpeechRecognition(foo)
