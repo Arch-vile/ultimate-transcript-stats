@@ -1,38 +1,37 @@
+import { isFoundIn } from "./wordMatching";
+
 export const speechHandler = (cb, state, text) => {
+  const appState = state.appState;
 
-  const appState = state.appState
+  const allWords = text
+    .split(" ")
+    .flatMap(it => it.split("-"))
+    .map(it => it.toLowerCase());
 
-  const allWords =
-      text.split(" ")
-      .flatMap(it => it.split("-"))
-      .map(it => it.toLowerCase())
-
-  if (appState === 'PROMPT_PLAYERS') {
-
+  if (appState === "PROMPT_PLAYERS") {
     const currentPlayers = new Set([...state.players]);
     const playerCandidates = new Set([...allWords]);
     const newPlayers = [...playerCandidates].filter(
-        it => !currentPlayers.has(it));
+      it => !currentPlayers.has(it)
+    );
 
     cb({
-      type: 'ADD_PLAYERS',
-      payload: newPlayers
+      payload: newPlayers,
+      type: "ADD_PLAYERS"
     });
   }
 
-  if (appState === 'PROMPT_POINT') {
-
-    if(new Set([...allWords]).has('hyökkäys')) {
+  if (appState === "PROMPT_POINT") {
+    if (isFoundIn(allWords, "hyökkäys")) {
       cb({
-        type: 'SET_POINT_TYPE',
-        payload: 'offence'
+        payload: "offence",
+        type: "SET_POINT_TYPE"
       });
     }
-
   }
 
   cb({
-    type: "SPEECH",
-    payload: text
-  })
-}
+    payload: text,
+    type: "SPEECH"
+  });
+};
