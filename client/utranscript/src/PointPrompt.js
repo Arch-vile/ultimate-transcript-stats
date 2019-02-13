@@ -1,29 +1,41 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux';
-import microphone from './microphone.svg'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import MicrophoneOn from "./MicrophoneOn";
 
-const mapStateToProps = state => ({state})
+const mapStateToProps = state => ({ currentPoint: state.currentPoint });
 
-const mapDispatchToProps = dispatch => ({
-  playersDone: () => dispatch(
-      {
-        type: 'PLAYERS_DONE'
-      })
-})
+const mapDispatchToProps = dispatch => ({});
 
-class PointPrompt extends Component {
-
+export class ControlWord extends Component {
   render() {
-    return (
-        <div className="borders">
-          <span>
-            Hyökkäys / Puolustus
-            <img src={microphone} className="microphone"/>
-          </span><br/>
-        </div>
-    )
+    return <span className="controlWord">{this.props.children}</span>;
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PointPrompt);
+const PointType = ({ currentPoint }) =>
+  !currentPoint.type ? (
+    <div>
+      <span>Hyökkäys / Puolustus</span>
+      <MicrophoneOn />
+    </div>
+  ) : (
+    <ControlWord>
+      {currentPoint.type === "offence" ? "Hyökkäys" : "Puolustus"}
+    </ControlWord>
+  );
 
+class PointPrompt extends Component {
+  render() {
+    return (
+      <div className="borders">
+        <PointType currentPoint={this.props.currentPoint} />
+        <br />
+      </div>
+    );
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PointPrompt);

@@ -1,47 +1,57 @@
-export const appStates = ['PROMPT_VIDEO', 'PROMPT_PLAYERS', 'PROMPT_POINT']
+export const appStates = [
+  "PROMPT_VIDEO",
+  "PROMPT_PLAYERS",
+  "PROMPT_POINT",
+  "PROMPT_POINT"
+];
 
 const initialState = {
+  appState: "PROMPT_POINT",
+  currentPoint: {},
   players: ["mikko", "ville"],
-  videoId: 'pOEbUUS4APk',
-   // appState: "PROMPT_VIDEO",
-  // appState: "PROMPT_POINT",
-  appState: 'PROMPT_PLAYERS',
-  transcripts: []
-}
+  transcripts: [],
+  videoId: "pOEbUUS4APk"
+  // appState: "PROMPT_VIDEO",
+  // appState: 'PROMPT_PLAYERS',
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_PLAYERS':
-      const currentPlayers = state.players;
-      const players = new Set([...currentPlayers, ...action.payload]);
+    case "ADD_PLAYERS":
       return {
         ...state,
-        players: [...players]
-      }
-    case 'REMOVE_PLAYER':
+        players: [...state.players, ...action.payload]
+      };
+    case "REMOVE_PLAYER":
       return {
         ...state,
         players: [...state.players.filter(it => it !== action.payload.name)]
-      }
-    case 'PLAYERS_DONE':
+      };
+    case "PLAYERS_DONE":
       return {
         ...state,
-        appState: 'PROMPT_POINT'
-      }
-    case 'VIDEO_INSERTED':
+        appState: "PROMPT_POINT"
+      };
+    case "VIDEO_INSERTED":
       return {
         ...state,
         appState: "PROMPT_PLAYERS",
         videoId: action.payload
-      }
-    case 'SPEECH':
+      };
+    case "SPEECH":
       return {
         ...state,
         transcripts: [...state.transcripts, action.payload]
-      }
+      };
+
+    case "SET_POINT_TYPE":
+      return {
+        ...state,
+        currentPoint: {
+          type: action.payload
+        }
+      };
     default:
-      return state
+      return state;
   }
-}
-
-
+};

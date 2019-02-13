@@ -56,3 +56,11 @@
   50% {background: red;}
   100% {background: #282c34;}
 }
+
+.controlWord {
+  border: 1px solid darkgreen;
+  background-color: forestgreen;
+  color: black;
+  font-weight: bold;
+}
+
