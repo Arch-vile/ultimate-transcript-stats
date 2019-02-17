@@ -7,10 +7,12 @@ export const appStates = [
 
 const initialState = {
   appState: "PROMPT_POINT",
-  currentPoint: {},
+  currentPoint: {
+    players: [],
+  },
   players: ["mikko", "ville"],
   transcripts: [],
-  videoId: "pOEbUUS4APk"
+  videoId: "wamRYJStvKs"
   // appState: "PROMPT_VIDEO",
   // appState: 'PROMPT_PLAYERS',
 };
@@ -45,10 +47,12 @@ export default (state = initialState, action) => {
       };
 
     case "SET_POINT_TYPE":
+      const pointType = action.payload;
       return {
         ...state,
         currentPoint: {
-          type: action.payload
+          ...state.currentPoint,
+          type: pointType
         }
       };
     default:

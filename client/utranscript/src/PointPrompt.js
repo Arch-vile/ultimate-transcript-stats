@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import MicrophoneOn from "./MicrophoneOn";
+import PlayersOnField from "./PlayersOnField";
 
 const mapStateToProps = state => ({ currentPoint: state.currentPoint });
 
@@ -30,6 +31,7 @@ class PointPrompt extends Component {
       <div className="borders">
         <PointType currentPoint={this.props.currentPoint} />
         <br />
+        <PlayersOnField/>
       </div>
     );
   }

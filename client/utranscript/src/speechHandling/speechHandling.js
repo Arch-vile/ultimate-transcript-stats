@@ -28,6 +28,13 @@ export const speechHandler = (cb, state, text) => {
         type: "SET_POINT_TYPE"
       });
     }
+
+    if (isFoundIn(allWords, "puolustus")) {
+      cb({
+        payload: "defence",
+        type: "SET_POINT_TYPE"
+      });
+    }
   }
 
   cb({
