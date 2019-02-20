@@ -8,7 +8,33 @@ export const appStates = [
 const initialState = {
   appState: "PROMPT_POINT",
   currentPoint: {
-    players: [],
+    type: "offence",
+    sequences: [
+      {
+        isOffence: true,
+        throws: [
+          {
+            from: "Ville",
+            goal: false,
+            to: "Mikko",
+            turn: false
+          },
+          {
+            from: "Mikko",
+            goal: false,
+            to: "Jaakko",
+            turn: true
+          }
+        ]
+      },
+      {
+        interceptor: "Jaakko",
+        isOffence: false,
+      }, {
+        isOffence: true,
+        throws: []
+      }
+    ]
   },
   players: ["mikko", "ville"],
   transcripts: [],
