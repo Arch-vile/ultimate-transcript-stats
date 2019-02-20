@@ -8,7 +8,6 @@ export const appStates = [
 const initialState = {
   appState: "PROMPT_POINT",
   currentPoint: {
-    type: "offence",
     sequences: [
       {
         isOffence: true,
@@ -29,8 +28,9 @@ const initialState = {
       },
       {
         interceptor: "Jaakko",
-        isOffence: false,
-      }, {
+        isOffence: false
+      },
+      {
         isOffence: true,
         throws: []
       }
@@ -74,11 +74,16 @@ export default (state = initialState, action) => {
 
     case "SET_POINT_TYPE":
       const pointType = action.payload;
+      const sequences = state.currentPoint.sequences;
+      const currentTurn = sequences[sequences.length - 1];
+
+      currentTurn.isOffence = pointType === "offence";
+
       return {
         ...state,
         currentPoint: {
           ...state.currentPoint,
-          type: pointType
+
         }
       };
     default:
