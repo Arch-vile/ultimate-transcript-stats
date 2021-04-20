@@ -16,7 +16,7 @@ class PlayerLabel extends Component {
 }
 
 const mapStateToProps = state => ({
-  players: state.players,
+  players: state.players || [],
 })
 
 const mapDispatchToProps = dispatch => ({

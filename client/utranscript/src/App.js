@@ -38,6 +38,7 @@ class App extends Component {
 
           {appState === 'PROMPT_PLAYERS' &&
           <div>
+            <VideoPlayer/>
             <PlayerPrompt/>
             <PlayerList/>
           </div>

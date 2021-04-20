@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 const mapStateToProps = state => ({
-  transcripts: state.transcripts
+  transcripts: state.transcripts || []
 });
 
 class Dictated extends Component {

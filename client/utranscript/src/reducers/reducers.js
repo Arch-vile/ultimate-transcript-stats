@@ -1,13 +1,16 @@
+import produce from "immer";
+
 export const appStates = [
   "PROMPT_VIDEO",
   "PROMPT_PLAYERS",
   "PROMPT_POINT",
-  "PROMPT_POINT"
 ];
 
 const initialState = {
-  appState: "PROMPT_POINT",
-  currentPoint: {
+  appState: "PROMPT_VIDEO",
+  players: [],
+  transcripts: [],
+  /*currentPoint: {
     sequences: [
       {
         isOffence: true,
@@ -38,10 +41,14 @@ const initialState = {
   },
   players: ["mikko", "ville"],
   transcripts: [],
-  videoId: "wamRYJStvKs"
-  // appState: "PROMPT_VIDEO",
-  // appState: 'PROMPT_PLAYERS',
+  videoId: "wamRYJStvKs"*/
 };
+
+const pointInitialState = () => {
+  return {sequences: [{
+    throws: []
+    }]};
+}
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -58,7 +65,8 @@ export default (state = initialState, action) => {
     case "PLAYERS_DONE":
       return {
         ...state,
-        appState: "PROMPT_POINT"
+        appState: "PROMPT_POINT",
+        currentPoint: pointInitialState(),
       };
     case "VIDEO_INSERTED":
       return {
@@ -74,18 +82,14 @@ export default (state = initialState, action) => {
 
     case "SET_POINT_TYPE":
       const pointType = action.payload;
-      const sequences = state.currentPoint.sequences;
-      const currentTurn = sequences[sequences.length - 1];
 
-      currentTurn.isOffence = pointType === "offence";
+      const newState = produce(state, draft => {
+        const sequences = draft.currentPoint.sequences;
+        const currentTurn = sequences[sequences.length - 1];
+        currentTurn.isOffence = pointType === "offence";
+      });
 
-      return {
-        ...state,
-        currentPoint: {
-          ...state.currentPoint,
-
-        }
-      };
+      return {...newState};
     default:
       return state;
   }
